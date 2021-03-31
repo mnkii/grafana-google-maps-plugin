@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataFrameView, PanelProps } from '@grafana/data';
+import { DataFrame, DataFrameView, PanelProps } from '@grafana/data';
 import { Options } from 'types';
 import { css, cx } from 'emotion';
 import GoogleMapReact  from 'google-map-react';
@@ -28,7 +28,7 @@ export class MapPanel extends React.Component<Props> {
 
     this.clearMap();
 
-    this.props.data.series.forEach(row => {
+    this.props.data.series.forEach((row: DataFrame) => {
 
       const view = new DataFrameView(row);
       view.forEach(item => {
