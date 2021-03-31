@@ -1,6 +1,6 @@
 {
   "type": "panel",
-  "name": "google-maps",
+  "name": "Google Maps",
   "id": "mnkii-google-maps",
   "info": {
     "description": "Plot data onto google maps",
