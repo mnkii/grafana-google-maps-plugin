@@ -12,3 +12,15 @@ SELECT * FROM
 (4, 'Exeter', 	-3.533333, 	50.716667, 400, 25000, 'wobble', NOW() - INTERVAL '1 YEAR'))
 AS t (id, name, long, lat, value, radius, info, created_at);
 ```
+
+### Install
+
+Clone this repo into your grafana plugins directory (default /var/lib/grafana/plugins if your installing grafana with package).
+
+Restart grafana-server and the plugin should be automatically detected and used.
+
+```
+cd /var/lib/grafana/plugins
+git clone https://github.com/mnkii/grafana-google-maps-plugin.git
+sudo service grafana-server restart
+```
