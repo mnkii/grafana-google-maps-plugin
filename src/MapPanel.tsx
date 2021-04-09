@@ -5,6 +5,7 @@ import { css, cx } from 'emotion';
 import GoogleMapReact from 'google-map-react';
 import { getValueFormat, formattedValueToString } from '@grafana/data';
 const colorBetween = require('color-between');
+const stc = require('string-to-color');
 
 interface Props extends PanelProps<Options> {}
 
@@ -38,7 +39,7 @@ export class MapPanel extends React.Component<Props> {
               this.transformRange(item.value, this.props.options.minThreshold, this.props.options.maxThreshold, 0, 1),
               'hex'
             )
-          : '#EE0000';
+          : stc(item.info);
 
         const marker = new MarkerWithLabel({
           map,
@@ -52,7 +53,9 @@ export class MapPanel extends React.Component<Props> {
           labelContent:
             '<i class="fa ' +
             this.props.options.icons[row.refId] +
-            ' fa-3x" style="color:rgba(167,0,0,0.8); padding-left:2 px;"></i>',
+            ' fa-3x" style="color:' +
+            color +
+            '; padding-left:2 px;"></i>',
           labelAnchor: new google.maps.Point(12, 36),
           zIndex: 20,
         });

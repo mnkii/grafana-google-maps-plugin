@@ -29,6 +29,7 @@
     "@types/googlemaps": "^3.40.2",
     "color-between": "^1.0.2",
     "google-map-react": "^2.1.8",
-    "markerwithlabel": "^2.0.2"
+    "markerwithlabel": "^2.0.2",
+    "string-to-color": "^2.2.2"
   }
 }
