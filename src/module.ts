@@ -3,8 +3,6 @@ import { Options } from './types';
 import { MapPanel } from './MapPanel';
 
 export const plugin = new PanelPlugin<Options>(MapPanel).setPanelOptions(builder => {
-
-
   builder
     .addTextInput({
       path: 'apiKey',
@@ -63,31 +61,29 @@ export const plugin = new PanelPlugin<Options>(MapPanel).setPanelOptions(builder
       description: 'Maximum threshold value for marker color',
       defaultValue: 100,
       category: ['Value'],
-    })
+    });
 
-    const queryConfig = [
-      {name: 'A', icon: 'fa fa-map-marker'},
-      {name: 'B', icon: 'fa fa-map-pin'},
-      {name: 'C', icon: 'fa fa-street-view'},
-      {name: 'D', icon: 'fa fa-thermometer-full'},
-      {name: 'E', icon: 'fa fa-user-o'},
-      {name: 'F', icon: 'fa fa-coffee'},
-      {name: 'G', icon: 'fa fa-university'},
-      {name: 'H', icon: 'fa fa-thumbs-up'},
-      {name: 'I', icon: 'fa fa-wifi'},
-      {name: 'J', icon: 'fa fa-thumb-tack'}
-    ];
+  const queryConfig = [
+    { name: 'A', icon: 'fa fa-map-marker' },
+    { name: 'B', icon: 'fa fa-map-pin' },
+    { name: 'C', icon: 'fa fa-street-view' },
+    { name: 'D', icon: 'fa fa-thermometer-full' },
+    { name: 'E', icon: 'fa fa-user-o' },
+    { name: 'F', icon: 'fa fa-coffee' },
+    { name: 'G', icon: 'fa fa-university' },
+    { name: 'H', icon: 'fa fa-thumbs-up' },
+    { name: 'I', icon: 'fa fa-wifi' },
+    { name: 'J', icon: 'fa fa-thumb-tack' },
+  ];
 
-    queryConfig.forEach(el => {
-      builder.addTextInput({
-        path: 'icons[' + el.name + ']',
-        name: 'Query ' + el.name + ': Font Awesome icon',
-        defaultValue: el.icon,
-        category: ['Marker Icons'],
-      }
-      )
-    }
-    );
+  queryConfig.forEach(el => {
+    builder.addTextInput({
+      path: 'icons[' + el.name + ']',
+      name: 'Query ' + el.name + ': Font Awesome icon',
+      defaultValue: el.icon,
+      category: ['Marker Icons'],
+    });
+  });
 
   return builder;
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import { DataFrame, DataFrameView, PanelProps } from '@grafana/data';
 import { Options } from 'types';
 import { css, cx } from 'emotion';
-import GoogleMapReact  from 'google-map-react';
+import GoogleMapReact from 'google-map-react';
 import { getValueFormat, formattedValueToString } from '@grafana/data';
 const colorBetween = require('color-between');
 
@@ -29,7 +29,6 @@ export class MapPanel extends React.Component<Props> {
     this.clearMap();
 
     this.props.data.series.forEach((row: DataFrame) => {
-
       const view = new DataFrameView(row);
       view.forEach(item => {
         const color = this.props.options.showValueByColor
@@ -44,20 +43,25 @@ export class MapPanel extends React.Component<Props> {
         const marker = new MarkerWithLabel({
           map,
           position: { lat: item.lat, lng: item.long },
-          title: item.metric +
+          title:
+            item.metric +
             (this.props.options.showValueOnLabel
               ? ': ' + formattedValueToString(getValueFormat(this.props.options.unit)(item.value))
               : ''),
           icon: ' ',
-          labelContent: '<i class="fa ' + this.props.options.icons[row.refId] + ' fa-3x" style="color:rgba(167,0,0,0.8); padding-left:2 px;"></i>',
+          labelContent:
+            '<i class="fa ' +
+            this.props.options.icons[row.refId] +
+            ' fa-3x" style="color:rgba(167,0,0,0.8); padding-left:2 px;"></i>',
           labelAnchor: new google.maps.Point(12, 36),
-          zIndex: 20
+          zIndex: 20,
         });
 
+        let toolTipContent = item.info;
         if (item.info) {
-          marker.addListener("click", () => {
+          marker.addListener('click', () => {
             new google.maps.InfoWindow({
-              content: item.info,
+              content: toolTipContent,
             }).open(map, marker);
           });
         }
@@ -90,13 +94,15 @@ export class MapPanel extends React.Component<Props> {
     return ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
   }
 
-  isTableQuery(props :any) :boolean {
-    return !props.props.data.request.targets.find((i :any) => i.format === 'time_series');
+  isTableQuery(props: any): boolean {
+    return !props.props.data.request.targets.find((i: any) => i.format === 'time_series');
   }
 
   render() {
     if (!this.isTableQuery(this)) {
-      throw new Error('This panel only supports table queries. Please set the "Format as" option underneath the query editor to "Table"');
+      throw new Error(
+        'This panel only supports table queries. Please set the "Format as" option underneath the query editor to "Table"'
+      );
     }
     return (
       <div
@@ -115,7 +121,9 @@ export class MapPanel extends React.Component<Props> {
           }}
           defaultZoom={this.props.options.zoom}
           yesIWantToUseGoogleMapApiInternals
-          onGoogleApiLoaded={({ map }) => {this.initialize(map)}}
+          onGoogleApiLoaded={({ map }) => {
+            this.initialize(map);
+          }}
         ></GoogleMapReact>
       </div>
     );
