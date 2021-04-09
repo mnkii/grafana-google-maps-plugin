@@ -39,7 +39,7 @@ export class MapPanel extends React.Component<Props> {
               this.transformRange(item.value, this.props.options.minThreshold, this.props.options.maxThreshold, 0, 1),
               'hex'
             )
-          : stc(item.info);
+          : stc(item.id);
 
         const marker = new MarkerWithLabel({
           map,
@@ -53,9 +53,7 @@ export class MapPanel extends React.Component<Props> {
           labelContent:
             '<i class="fa ' +
             this.props.options.icons[row.refId] +
-            ' fa-3x" style="color:' +
-            color +
-            '; padding-left:2 px;"></i>',
+            ' fa-3x" style="color:' + color + '; padding-left:2 px;"></i>',
           labelAnchor: new google.maps.Point(12, 36),
           zIndex: 20,
         });
